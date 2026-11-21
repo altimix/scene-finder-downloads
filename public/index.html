@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f7f6ef">
+  <meta name="description" content="Scene Finder は講義資料・研究ノート・写真・動画を日本語で探せるWindows用のローカル検索アプリです。通常版と大学用オフライン版を無料で配布しています。">
+  <title>Scene Finder｜大学の資料を中身で探す Windows アプリ</title>
+  <link rel="icon" href="assets/brand.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="mast">
+    <div class="frame mast-inner">
+      <a class="wordmark" href="#main" aria-label="Scene Finder トップ"><img src="assets/brand.svg" alt="" width="30" height="30"><span>Scene Finder</span></a>
+      <nav aria-label="ページ内メニュー"><a href="#inside">使い方</a><a href="#developer">開発者</a><a href="#downloads">ダウンロード</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero frame" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="platform">Windows 11 x64 用・無料</p>
+        <h1 id="hero-title">講義資料を、<br>中身で探す。</h1>
+        <p class="intro">PDFの一節、表計算のセル、実習動画の一場面。<br class="wide">PCにある資料を、日本語の言葉や音声で探せます。</p>
+        <a class="primary" href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Setup-0.3.0-x64.exe">通常版をダウンロード</a>
+        <p class="file-spec">バージョン 0.3.0 <span>／</span> EXE・約727 MB</p>
+      </div>
+      <figure class="hero-photo">
+        <div class="photo-wrap"><img src="assets/campus-courtyard.webp" alt="木漏れ日が差す大学の中庭と木製ベンチ。実習の場面を想定した模擬画像。" width="1536" height="1024" fetchpriority="high"></div>
+        <figcaption><span>検索例 <strong>「木陰のベンチ」</strong></span><span>実習の模擬写真より</span></figcaption>
+      </figure>
+    </section>
+    <section class="inside" id="inside" aria-labelledby="inside-heading">
+      <div class="frame">
+        <div class="section-heading">
+          <h2 id="inside-heading">探した言葉から、原文へ。</h2>
+          <p>授業やゼミのフォルダーを登録し、探したい内容を入力します。</p>
+        </div>
+        <div class="demonstration">
+          <figure class="screen">
+            <a class="screen-link" href="assets/scene-finder-search.png" target="_blank" rel="noopener" aria-label="実際の検索画面を大きく表示（新しいタブ）"><img src="assets/scene-finder-search.png" alt="Scene Finderの実際の画面。「最終レポートの提出期限」でPDFを検索し、課題要項の2ページ目が見つかったところ。" width="1344" height="836" loading="lazy"></a>
+            <figcaption><span>架空の講義資料を使った実際の検索画面</span><a href="assets/scene-finder-search.png" target="_blank" rel="noopener" aria-label="検索画面を拡大（新しいタブ）">拡大する</a></figcaption>
+          </figure>
+          <dl class="use-cases">
+            <div><dt>ページやセルを見つける</dt><dd>PDFはページ、Excelはシートとセル範囲、PowerPointはスライド、動画は時刻を表示。見つけた箇所から内容を確認できます。</dd></div>
+            <div><dt>声で検索する</dt><dd>「音声入力」を押し、「レポートを探して」と話します。同じボタンで録音を終え、検索語は画面で修正できます。</dd></div>
+            <div><dt>要点と出典を残す</dt><dd>Gemmaを使うと、選んだ資料をテーマ別に整理したり、文書を出典付きで要約したりできます。分類表はテキストで保存できます。</dd></div>
+          </dl>
+        </div>
+        <p class="local-note">登録した資料の検索・音声認識・要約はこのPC内で処理します。検索は対応するIntel NPUまたはCPU、音声認識と要約にはCPUを使います。</p>
+      </div>
+    </section>
+    <section class="downloads frame" id="downloads" aria-labelledby="downloads-heading">
+      <div class="section-heading"><h2 id="downloads-heading">ダウンロード</h2><p>どちらも Windows 11 x64 用です。利用するPCに合わせて選んでください。</p></div>
+      <div class="editions">
+        <article class="edition standard">
+          <h3>通常版</h3>
+          <p class="package-type">セットアップEXE <span>／</span> 約727 MB</p>
+          <p>EXEを実行すると、資料検索と音声入力を使えます。初めて要約・整理するときに、画面からGemma（約4.36 GB）を追加できます。</p>
+          <a class="primary" href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Setup-0.3.0-x64.exe">通常版をダウンロード</a>
+          <a class="checksum" href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SHA256SUMS.txt">通常版のチェックサム（SHA-256）</a>
+        </article>
+        <article class="edition campus" id="campus">
+          <h3>大学用オフライン版</h3>
+          <p class="package-type">モデル同梱ZIP <span>／</span> 約5.09 GB</p>
+          <p>ネット接続のない教室や、複数台にまとめて入れる場合に。ZIPをすべて展開し、3個のモデルデータと同じ場所にある学内版EXEを実行します。</p>
+          <a class="primary campus-button" href="/downloads/SceneFinder-Campus-Offline-0.3.0-x64.zip">大学用ZIPをダウンロード</a>
+          <details><summary>個別ファイルで取得する</summary><p>次の4ファイルを同じフォルダーに保存し、セットアップEXEを実行してください。</p>
+            <ul>
+              <li><a href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Campus-Setup-0.3.0-x64.exe">大学用セットアップEXE</a></li>
+              <li><a href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Campus-Gemma-0.3.0.part1.bin">モデルデータ 1 / 3</a></li>
+              <li><a href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Campus-Gemma-0.3.0.part2.bin">モデルデータ 2 / 3</a></li>
+              <li><a href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Campus-Gemma-0.3.0.part3.bin">モデルデータ 3 / 3</a></li>
+            </ul>
+            <a class="checksum" href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SHA256SUMS-Campus.txt">大学用のチェックサム（SHA-256）</a>
+          </details>
+        </article>
+      </div>
+      <div class="installation"><h3>インストールしたら</h3><div><p>スタートメニューから「Scene Finder」を開き、「フォルダーを追加」で授業資料の保存先を選んでください。解析が終わると検索できます。操作ガイドは画面上部の「ヘルプ」から開けます。</p>
+      <p class="small">セットアップには電子署名がありません。大学の管理端末では学内の配布手順に従ってください。同梱モデルなどのライセンスはインストール先の <code>app/notices</code> に収録しています。</p></div></div>
+    </section>
+    <section class="profile" id="developer" aria-labelledby="developer-heading">
+      <div class="frame profile-inner">
+        <img src="assets/developer.png" alt="開発者のプロフィール写真" width="1080" height="1080" loading="lazy">
+        <div class="profile-copy">
+          <h2 id="developer-heading">開発者プロフィール</h2>
+          <p>スタディサプリ情報Ⅰ・プログラミング講師</p>
+          <p>青山学院中等部・青山学院大学非常勤講師</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="frame foot-inner"><span class="foot-brand"><img src="assets/brand.svg" alt="" width="22" height="22">Scene Finder</span><a href="https://github.com/altimix/scene-finder-downloads/releases/tag/v0.3.0">リリース情報</a></div></footer>
+</body>
+</html>
