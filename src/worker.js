@@ -1,6 +1,8 @@
-import archive from "./campus-archive.json";
+import currentArchive from "./campus-archive.json";
+import previousArchive from "./campus-archive-0.3.0.json";
 
 const releases = "https://github.com/altimix/scene-finder-downloads/releases/download/";
+const archives = new Map([previousArchive, currentArchive].map(archive => ["/downloads/" + archive.name, archive]));
 
 function windowFor(range, length) {
   if (!range) return [0, length - 1];
@@ -14,7 +16,7 @@ function windowFor(range, length) {
 
 // ZIP_STORED media already lives in the release. Keep only the ZIP headers
 // and central directory in this Worker, and stream each asset directly.
-function partsFor(start, end) {
+function partsFor(archive, start, end) {
   let offset = 0;
   const parts = [];
   for (const segment of archive.segments) {
@@ -27,7 +29,7 @@ function partsFor(start, end) {
   return parts;
 }
 
-async function assetBody({segment, lo, hi}, signal) {
+async function assetBody(archive, {segment, lo, hi}, signal) {
   const partial = lo !== 0 || hi !== segment.size - 1;
   const url = releases + archive.tag + "/" + encodeURIComponent(segment.file);
   const headers = {"Accept-Encoding": "identity"};
@@ -41,11 +43,11 @@ async function assetBody({segment, lo, hi}, signal) {
   return asset.body;
 }
 
-async function streamZip(parts, writable, first, stream, signal) {
+async function streamZip(archive, parts, writable, first, stream, signal) {
   try {
     for (const part of parts) {
       if (part.segment.file) {
-        const source = part === first ? stream : await assetBody(part, signal);
+        const source = part === first ? stream : await assetBody(archive, part, signal);
         await source.pipeTo(writable, {preventClose: true});
       } else {
         const bytes = Uint8Array.from(atob(part.segment.bytes), ch => ch.charCodeAt(0));
@@ -63,7 +65,8 @@ async function streamZip(parts, writable, first, stream, signal) {
 
 export default {
   async fetch(request, env, ctx) {
-    if (new URL(request.url).pathname !== "/downloads/" + archive.name) return env.ASSETS.fetch(request);
+    const archive = archives.get(new URL(request.url).pathname);
+    if (!archive) return env.ASSETS.fetch(request);
     if (request.method !== "GET" && request.method !== "HEAD") {
       return new Response(null, {status: 405, headers: {Allow: "GET, HEAD"}});
     }
@@ -87,13 +90,13 @@ export default {
     if (range) headers.set("Content-Range", `bytes ${start}-${end}/${archive.size}`);
     const init = {status: range ? 206 : 200, headers};
     if (request.method === "HEAD") return new Response(null, init);
-    const parts = partsFor(start, end);
+    const parts = partsFor(archive, start, end);
     const first = parts.find(part => part.segment.file);
     let stream;
-    try { if (first) stream = await assetBody(first, request.signal); }
+    try { if (first) stream = await assetBody(archive, first, request.signal); }
     catch { return new Response("配布ファイルに接続できません。しばらくしてから再度お試しください。", {status: 502}); }
     const body = new FixedLengthStream(length);
-    ctx.waitUntil(streamZip(parts, body.writable, first, stream, request.signal));
+    ctx.waitUntil(streamZip(archive, parts, body.writable, first, stream, request.signal));
     return new Response(body.readable, init);
   }
 };

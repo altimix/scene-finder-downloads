@@ -18,4 +18,4 @@ npx wrangler@4.163.0 deploy
 python tools/prepare-campus-archive.py SceneFinder-Campus-Offline-X.Y.Z-x64.zip
 ```
 
-`src/campus-archive.json` にはファイル名、各ファイルの長さ、ZIPヘッダーと全体のSHA-256が入ります。サイトはこれを使ってダウンロード時に元のZIPと同じバイト列を返します。
+`src/campus-archive.json` にはファイル名、各ファイルの長さ、ZIPヘッダーと全体のSHA-256が入ります。サイトはこれを使ってダウンロード時に元のZIPと同じバイト列を返します。既に配布したZIPのURLを引き続き提供するため、現行版のメタデータを更新する前に旧版をバージョン付きの名前で保存し、`src/worker.js` の配布一覧に加えます。
