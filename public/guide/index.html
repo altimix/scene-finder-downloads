@@ -20,7 +20,7 @@
   </header>
   <main id="main" class="frame guide-layout" tabindex="-1">
     <div class="guide-title">
-      <p class="guide-edition">Scene Finder ／ Windows版 0.3.0</p>
+      <p class="guide-edition">Scene Finder ／ Windows版 0.3.1</p>
       <h1>使い方</h1>
       <p>「最終レポートの提出期限」で検索し、課題要項のどこに締切が書かれているかを調べる例です。画面には架空の講義資料を使っています。ご自身のPCでは、手元の資料に合わせて検索語を置き換えてください。画像はクリックやタップで拡大できます。</p>
     </div>
@@ -46,18 +46,22 @@
           <div><dt>大学用オフライン版</dt><dd>ネット接続のある場所でZIP（約5.09 GB）をダウンロードし、教室のPCにコピーします。ZIPをすべて展開し、3個のモデルデータと同じフォルダーにある <code>SceneFinder-Campus-Setup</code> で始まるEXEを実行します。Gemmaも入るので、初回から要約・整理ができます。</dd></div>
         </dl>
         <p><a class="guide-text-link" href="/#downloads">Windows版のダウンロードへ</a></p>
-        <p>インストール後は、Windowsのスタートメニューで <strong>Scene Finder</strong> を開きます。ブラウザーに表示されるのが、このPCの資料を検索する操作画面です。</p>
+        <p>インストール後は、Windowsのスタートメニューで <strong>Scene Finder</strong> を開きます。専用ウィンドウで、このPCの資料を検索できます。WebView2を利用できないPCでは既定のブラウザーに同じ操作画面が開きます。</p>
         <aside class="guide-note"><strong>どの作業にGemmaが必要？</strong><p>Intel OpenVINOが、処理に応じてPC内のAIモデルを動かします。検索には検索用モデル、音声入力にはWhisperを使います。要約とテーマ別の整理には、ローカルLLMのGemma 4 E2Bを使います。資料や録音をクラウドAIに送らずに使え、Geminiの契約やAPIキーも不要です。</p></aside>
       </section>
 
       <section id="folder">
         <h2>フォルダーを登録する</h2>
         <ol>
-          <li>講義ひとつ分の資料をPCのフォルダーに用意し、アプリで<strong>「フォルダーを追加」</strong>を押します。</li>
-          <li><strong>「参照…」</strong>からそのフォルダーを選びます。「フォルダーの場所」にパスを貼り付けても指定できます。</li>
+          <li>講義ひとつ分の資料をPCのフォルダーに用意し、アプリで<strong>「フォルダーを追加」</strong>を押します。専用ウィンドウではWindowsの選択画面が直接開きます。</li>
+          <li>そのフォルダーを選びます。ブラウザーで使うときや、別の場所を選び直すときは<strong>「参照…」</strong>を押します。「フォルダーの場所」にパスを貼り付けても指定できます。</li>
           <li><strong>「解析を開始」</strong>を押します。中のサブフォルダーも対象です。解析が終わったら検索に進みます。</li>
         </ol>
         <figure class="guide-shot compact"><a href="/assets/guide/folder-add.webp" target="_blank" rel="noopener" aria-label="フォルダーを追加する画面を拡大（新しいタブ）"><img src="/assets/guide/folder-add.webp" width="1032" height="624" alt="「フォルダーの場所」に授業資料のパスが入り、右下の「解析を開始」を押せる状態。" loading="lazy"></a><figcaption>フォルダーの場所を確認してから解析を始めます。</figcaption></figure>
+        <h3>授業ごとに見分けやすくする</h3>
+        <p>左側でフォルダーを選ぶと、その行に<strong>「選択中」</strong>と付きます。検索欄の上の<strong>「検索対象」</strong>でも、いま探しているフォルダーを確認できます。検索欄が空のときはPDFやスライドなどの件数が見えます。件数は登録時に作った索引からすぐに表示され、Gemmaは「資料を要約」などを選んだときに動きます。</p>
+        <p>フォルダー名の隣にある<strong>「…」</strong>を押し、「上へ移動」「下へ移動」でよく使う授業を上に置けます。「アイコンの色」を選ぶと、次にアプリを開いてもその色と順番で並びます。</p>
+        <figure class="guide-shot compact"><a href="/assets/guide/folder-settings.webp" target="_blank" rel="noopener" aria-label="フォルダーの色と並び順の設定画面を拡大（新しいタブ）"><img src="/assets/guide/folder-settings.webp" width="1134" height="693" alt="フォルダーの操作画面。「アイコンの色」と現在の表示順があり、「上へ移動」「下へ移動」で変更できる。" loading="lazy"></a><figcaption>色と並び順は、このPCでの表示に使います。</figcaption></figure>
       </section>
 
       <section id="search">
@@ -67,13 +71,19 @@
           <li>「資料を探す」の検索欄に<strong>「最終レポートの提出期限」</strong>と入力します。配布物がPDFだと分かっているので、ここでは種類の<strong>「PDF」</strong>を選び、「検索」を押します。</li>
           <li>読みたい結果を選びます。この例の先頭には<strong>「最終レポート課題要項.pdf」</strong>が出ました。「p. 2」は、該当箇所がPDFの2ページ目にあるという意味です。</li>
         </ol>
-        <figure class="guide-shot"><a href="/assets/guide/search-results.webp" target="_blank" rel="noopener" aria-label="PDFの検索結果を拡大（新しいタブ）"><img src="/assets/guide/search-results.webp" width="1280" height="923" alt="「最終レポートの提出期限」の検索結果。PDFに絞った一覧の先頭に課題要項の p. 2 が表示されている。" loading="lazy"></a><figcaption>同じファイルでも、見つかったページや場所ごとに結果が並びます。</figcaption></figure>
+        <figure class="guide-shot"><a href="/assets/guide/search-results.webp" target="_blank" rel="noopener" aria-label="PDFの検索結果を拡大（新しいタブ）"><img src="/assets/guide/search-results.webp" width="1280" height="900" alt="「最終レポートの提出期限」の検索結果。「資料に書かれていること」に提出期限と、課題要項の p. 2 へのリンクが表示されている。" loading="lazy"></a><figcaption>検索語に合う原文を見つけると、結果の上に抜粋と出典が出ます。資料名を押して確かめられます。</figcaption></figure>
         <h3>ほかの資料では、どこが見つかる？</h3>
         <dl class="formats">
           <div><dt>Word・Excel・PowerPoint</dt><dd>Wordは段落や表の行、Excelはシートとセル範囲、PowerPointはスライド番号を確認できます。対象は .docx・.xlsx・.pptx です。</dd></div>
           <div><dt>研究ノート</dt><dd>テキストは行番号、Markdownは行番号と直前の見出しを手がかりに原文を探せます。</dd></div>
           <div><dt>写真・動画</dt><dd>写っているものや動作を入力します。動画は5秒ごとの場面を検索し、再生に対応した形式なら見つかった時刻から確認できます。</dd></div>
         </dl>
+        <details><summary>対応する21の拡張子を見る</summary><ul>
+          <li>文書・表・スライド　.pdf、.docx、.xlsx、.pptx</li>
+          <li>テキスト・研究ノート　.txt、.md</li>
+          <li>写真　.jpg、.jpeg、.png、.webp、.bmp、.tif、.tiff</li>
+          <li>動画　.mp4、.mov、.m4v、.webm、.mkv、.avi、.mts、.m2ts</li>
+        </ul><p>動画の読み取り・再生は、PCで利用できるコーデックにも依存します。</p></details>
       </section>
 
       <section id="source">
@@ -105,6 +115,7 @@
           <li>気になる文の参照番号を押します。画面例の<strong>［S4］</strong>を選ぶと、提出期限の根拠として使われた2ページ目の原文を確認できます。</li>
         </ol>
         <figure class="guide-shot compact"><a href="/assets/guide/summary.webp" target="_blank" rel="noopener" aria-label="Gemmaの要約と参照箇所を拡大（新しいタブ）"><img src="/assets/guide/summary.webp" width="969" height="1007" alt="Gemmaが課題要項を箇条書きで要約した画面。参照箇所 S4 を開くと、p. 2 の原文と出典リンクが表示される。" loading="lazy"></a><figcaption>上がGemmaの要約、下の「参照箇所」が資料から取り出した原文です。</figcaption></figure>
+        <p>処理中は経過時間が表示されます。このPCでの実績や進み具合から予測できるときは「残り約○秒」が出ます。プレビューを閉じて待つこともできます。完了したらアプリ内の通知の「要約を見る」から戻ってください。</p>
       </section>
 
       <section id="organize">
