@@ -8,3 +8,9 @@
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/guide/
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/guide/index.html
+  Cache-Control: public, max-age=0, must-revalidate, no-transform

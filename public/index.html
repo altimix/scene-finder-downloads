@@ -15,57 +15,61 @@
   <header class="mast">
     <div class="frame mast-inner">
       <a class="wordmark" href="#main" aria-label="Scene Finder トップ"><img src="assets/brand.svg" alt="" width="30" height="30"><span>Scene Finder</span></a>
-      <nav aria-label="ページ内メニュー"><a href="#inside">使い方</a><a href="#developer">開発者</a><a href="#downloads">ダウンロード</a></nav>
+      <nav aria-label="メインメニュー"><a href="/guide/">使い方</a><a href="#downloads">ダウンロード</a><a href="#developer">開発者</a></nav>
     </div>
   </header>
   <main id="main">
     <section class="hero frame" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="platform">Windows 11 x64 用・無料</p>
-        <h1 id="hero-title">講義資料を、<br>中身で探す。</h1>
-        <p class="intro">PDFの一節、表計算のセル、実習動画の一場面。<br class="wide">PCにある資料を、日本語の言葉や音声で探せます。</p>
-        <a class="primary" href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Setup-0.3.0-x64.exe">通常版をダウンロード</a>
-        <p class="file-spec">バージョン 0.3.0 <span>／</span> EXE・約727 MB</p>
+        <p class="platform">Intel OpenVINOで動く、大学の資料検索アプリ</p>
+        <h1 id="hero-title"><span class="query-label">検索した言葉</span><span class="query-part">最終レポートの</span><wbr><span class="query-part">提出期限</span></h1>
+        <div class="search-evidence">
+          <p class="evidence-label">見つかった資料</p>
+          <p class="found-file">最終レポート課題要項.pdf <span>2ページ</span></p>
+          <p class="evidence-label">そのページの原文</p>
+          <blockquote>最終レポートの提出期限は <mark>2027 年 1 月 15 日（金）17 時</mark>です。</blockquote>
+        </div>
       </div>
-      <figure class="hero-photo">
-        <div class="photo-wrap"><img src="assets/campus-courtyard.webp" alt="木漏れ日が差す大学の中庭と木製ベンチ。実習の場面を想定した模擬画像。" width="1536" height="1024" fetchpriority="high"></div>
-        <figcaption><span>検索例 <strong>「木陰のベンチ」</strong></span><span>実習の模擬写真より</span></figcaption>
+      <figure class="screen">
+        <a class="screen-link" href="assets/scene-finder-search.png" target="_blank" rel="noopener">
+          <img src="assets/scene-finder-search.png" alt="Scene Finderの実画面。検索欄に「最終レポートの提出期限」と入力し、PDFに絞ると、先頭の結果に「最終レポート課題要項.pdf」と「p. 2」が表示されています。" width="1344" height="836" fetchpriority="high">
+          <span class="enlarge">画面を拡大<span aria-hidden="true"> ↗</span><span class="sr-only">（新しいタブ）</span></span>
+        </a>
+        <figcaption>架空の講義資料で検索したときの画面</figcaption>
       </figure>
     </section>
     <section class="inside" id="inside" aria-labelledby="inside-heading">
-      <div class="frame">
-        <div class="section-heading">
-          <h2 id="inside-heading">探した言葉から、原文へ。</h2>
-          <p>授業やゼミのフォルダーを登録し、探したい内容を入力します。</p>
+      <div class="frame guide-intro">
+        <div class="guide-opening">
+          <h2 id="inside-heading">使い方</h2>
+          <p>まず、ひとつの授業のフォルダーで試してみてください。</p>
+          <a class="guide-link" href="/guide/">画面を見ながら使い方を読む <span aria-hidden="true">→</span></a>
         </div>
-        <div class="demonstration">
-          <figure class="screen">
-            <a class="screen-link" href="assets/scene-finder-search.png" target="_blank" rel="noopener" aria-label="実際の検索画面を大きく表示（新しいタブ）"><img src="assets/scene-finder-search.png" alt="Scene Finderの実際の画面。「最終レポートの提出期限」でPDFを検索し、課題要項の2ページ目が見つかったところ。" width="1344" height="836" loading="lazy"></a>
-            <figcaption><span>架空の講義資料を使った実際の検索画面</span><a href="assets/scene-finder-search.png" target="_blank" rel="noopener" aria-label="検索画面を拡大（新しいタブ）">拡大する</a></figcaption>
-          </figure>
-          <dl class="use-cases">
-            <div><dt>ページやセルを見つける</dt><dd>PDFはページ、Excelはシートとセル範囲、PowerPointはスライド、動画は時刻を表示。見つけた箇所から内容を確認できます。</dd></div>
-            <div><dt>声で検索する</dt><dd>「音声入力」を押し、「レポートを探して」と話します。同じボタンで録音を終え、検索語は画面で修正できます。</dd></div>
-            <div><dt>要点と出典を残す</dt><dd>Gemmaを使うと、選んだ資料をテーマ別に整理したり、文書を出典付きで要約したりできます。分類表はテキストで保存できます。</dd></div>
-          </dl>
-        </div>
-        <p class="local-note">登録した資料の検索・音声認識・要約はこのPC内で処理します。検索は対応するIntel NPUまたはCPU、音声認識と要約にはCPUを使います。</p>
+        <ol class="guide-steps">
+          <li><strong>授業資料を登録する</strong><p>「フォルダーを追加」で資料の保存先を選び、「解析を開始」を押します。</p></li>
+          <li><strong>覚えている言葉で探す</strong><p>解析が終わったら、探したい言葉を入力するか「音声入力」で話します。PDF、Word、Excelなど、資料の種類で絞り込めます。</p></li>
+          <li><strong>該当箇所を読む</strong><p>結果を選んで、PDFのページやスライド、表のセル範囲を確認します。写真や動画の場面も検索できます。</p></li>
+        </ol>
+        <aside class="local-note" aria-label="処理に使うデバイス">
+          <h3>検索も要約も、このPCの中で</h3>
+          <p>検索と音声入力は、通常版に入っているモデルだけで使えます。Intel OpenVINOが、検索を対応するIntel NPUまたはCPUで、音声認識をCPUで処理します。文書の出典付き要約やテーマ別の整理には、ローカルLLMのGemmaを使います。どの作業にもクラウドAIの契約やAPIキーは不要です。</p>
+        </aside>
       </div>
     </section>
     <section class="downloads frame" id="downloads" aria-labelledby="downloads-heading">
-      <div class="section-heading"><h2 id="downloads-heading">ダウンロード</h2><p>どちらも Windows 11 x64 用です。利用するPCに合わせて選んでください。</p></div>
+      <div class="section-heading"><h2 id="downloads-heading">ダウンロード</h2><p>バージョン 0.3.0 ／ Windows 11 x64 用・無料</p></div>
       <div class="editions">
         <article class="edition standard">
           <h3>通常版</h3>
           <p class="package-type">セットアップEXE <span>／</span> 約727 MB</p>
-          <p>EXEを実行すると、資料検索と音声入力を使えます。初めて要約・整理するときに、画面からGemma（約4.36 GB）を追加できます。</p>
+          <p>インストールすると資料検索と音声入力が使えます。要約・整理も使う場合は、インターネットに接続し、アプリからGemma（約4.36 GB）を一度ダウンロードしてください。</p>
           <a class="primary" href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SceneFinder-Setup-0.3.0-x64.exe">通常版をダウンロード</a>
           <a class="checksum" href="https://github.com/altimix/scene-finder-downloads/releases/download/v0.3.0/SHA256SUMS.txt">通常版のチェックサム（SHA-256）</a>
         </article>
         <article class="edition campus" id="campus">
           <h3>大学用オフライン版</h3>
           <p class="package-type">モデル同梱ZIP <span>／</span> 約5.09 GB</p>
-          <p>ネット接続のない教室や、複数台にまとめて入れる場合に。ZIPをすべて展開し、3個のモデルデータと同じ場所にある学内版EXEを実行します。</p>
+          <p>Gemmaも同梱しています。ZIPをすべて展開し、3個のモデルデータと同じ場所にある大学用EXEを実行してください。ネット接続のない教室でも、最初から要約・整理まで使えます。</p>
           <a class="primary campus-button" href="/downloads/SceneFinder-Campus-Offline-0.3.0-x64.zip">大学用ZIPをダウンロード</a>
           <details><summary>個別ファイルで取得する</summary><p>次の4ファイルを同じフォルダーに保存し、セットアップEXEを実行してください。</p>
             <ul>
@@ -78,8 +82,7 @@
           </details>
         </article>
       </div>
-      <div class="installation"><h3>インストールしたら</h3><div><p>スタートメニューから「Scene Finder」を開き、「フォルダーを追加」で授業資料の保存先を選んでください。解析が終わると検索できます。操作ガイドは画面上部の「ヘルプ」から開けます。</p>
-      <p class="small">セットアップには電子署名がありません。大学の管理端末では学内の配布手順に従ってください。同梱モデルなどのライセンスはインストール先の <code>app/notices</code> に収録しています。</p></div></div>
+      <p class="install-note">セットアップには電子署名がありません。大学の管理端末では学内の配布手順に従ってください。同梱モデルなどのライセンスはインストール先の <code>app/notices</code> に収録しています。</p>
     </section>
     <section class="profile" id="developer" aria-labelledby="developer-heading">
       <div class="frame profile-inner">
