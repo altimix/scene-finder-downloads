@@ -20,7 +20,7 @@
   </header>
   <main id="main" class="frame guide-layout" tabindex="-1">
     <div class="guide-title">
-      <p class="guide-edition">Scene Finder ／ Windows版 0.3.1</p>
+      <p class="guide-edition">Scene Finder ／ Windows版 0.3.2</p>
       <h1>使い方</h1>
       <p>「最終レポートの提出期限」で検索し、課題要項のどこに締切が書かれているかを調べる例です。画面には架空の講義資料を使っています。ご自身のPCでは、手元の資料に合わせて検索語を置き換えてください。画像はクリックやタップで拡大できます。</p>
     </div>
@@ -100,11 +100,12 @@
       <section id="voice">
         <h2>声で検索する</h2>
         <ol>
-          <li>対象フォルダーを選んで検索欄の<strong>「音声入力」</strong>を押します。初回はブラウザーにマイクの使用を許可します。</li>
-          <li>たとえば「最終レポートの提出期限を探して」と話し、同じ位置の<strong>「録音を終了」</strong>を押します。録音は最長20秒で自動的に止まります。</li>
-          <li>検索欄で聞き取った言葉を確認します。科目名などが違うときはキーボードで直して「検索」を押します。</li>
+          <li>対象フォルダーを選び、検索欄の<strong>「音声入力」</strong>を押します。「音声入力にこのPCのマイクを使用しますか？」と表示されたら<strong>「はい」</strong>を選びます。ブラウザーで使う場合は、ブラウザーの確認画面でマイクの使用を許可します。</li>
+          <li>「最終レポートの提出期限を探して」と話します。マイクが拾った音に合わせて波形が動きます。話し終えて約1.4秒待つと、自動で録音が終わります。</li>
+          <li>音声から検索語が読み取れると、選んだフォルダーの検索が自動で始まります。科目名などの聞き違いがあれば、検索欄で直して<strong>「検索」</strong>を押します。</li>
         </ol>
-        <figure class="guide-shot"><a href="/assets/guide/voice-input.webp" target="_blank" rel="noopener" aria-label="録音中の検索欄を拡大（新しいタブ）"><img src="/assets/guide/voice-input.webp" width="1401" height="458" alt="録音中は検索欄のマイクのボタンが「録音を終了」に変わり、欄の下に録音中の案内が出る。" loading="lazy"></a><figcaption>音声の認識はPC内で行います。録音ファイルは保存しません。</figcaption></figure>
+        <figure class="guide-shot"><a href="/assets/guide/voice-input.webp" target="_blank" rel="noopener" aria-label="録音中の波形と検索欄を拡大（新しいタブ）"><img src="/assets/guide/voice-input.webp" width="1401" height="486" alt="検索欄には「録音を終了」ボタンがあり、録音中の波形に話し声の強弱が表れている。" loading="lazy"></a><figcaption>波形でマイクの反応を確認できます。音声の認識はPC内で行い、録音ファイルは保存しません。</figcaption></figure>
+        <p>自分で区切るときは<strong>「録音を終了」</strong>、取り消すときは<strong>「取り消す」</strong>かEscキーを押します。1回の録音は最長20秒です。</p>
       </section>
 
       <section id="summary">
@@ -144,6 +145,12 @@
       </section>
     </div>
   </main>
-  <footer><div class="frame foot-inner"><a class="foot-brand" href="/"><img src="/assets/brand.svg" width="22" height="22" alt="">Scene Finder</a><a href="#main">このページの先頭へ</a></div></footer>
+  <footer>
+    <div class="frame foot-inner guide-footer">
+      <a class="foot-brand" href="/"><img src="/assets/brand.svg" width="22" height="22" alt="">Scene Finder</a>
+      <a href="https://www.youtube.com/@gigach">YouTubeチャンネル「GIGAch」</a>
+      <a href="#main">このページの先頭へ</a>
+    </div>
+  </footer>
 </body>
 </html>

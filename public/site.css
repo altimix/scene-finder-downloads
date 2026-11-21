@@ -143,6 +143,7 @@ footer { border-top:1px solid var(--rule); }
 .profile-inner>img { width:140px; aspect-ratio:1; border:1px solid #b1b6a8; }
 .profile-copy h2 { margin-bottom:12px; font-size:clamp(22px,2.3vw,32px); }
 .profile-copy p { font-size:15px; color:var(--muted); }
+.profile-channel { display:inline-block; margin-top:8px; color:var(--accent); font-size:15px; font-weight:600; }
 @media(max-width:700px) {
   .profile-inner { grid-template-columns:88px 1fr; gap:16px; }
   .profile-inner>img { width:88px; }
