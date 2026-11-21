@@ -1,0 +1,72 @@
+.guide-layout {
+  display:grid;
+  grid-template-columns:minmax(12rem, 16rem) minmax(0, 49rem);
+  grid-template-areas:"title title" "contents body";
+  column-gap:clamp(36px, 6vw, 92px);
+  padding-block:clamp(32px, 5vw, 64px) 72px;
+}
+.guide-title { grid-area:title; border-bottom:2px solid var(--ink); padding-bottom:30px; }
+.guide-title h1 { margin:6px 0 16px; }
+.guide-edition { color:var(--accent); font-size:.9rem; font-weight:650; }
+.guide-title>p:last-child { max-width:39em; line-height:1.95; font-size:clamp(1rem, 1.5vw, 1.16rem); }
+.guide-page .mast a[aria-current] { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:6px; }
+.contents {
+  grid-area:contents; align-self:start; display:block; position:sticky; top:16px;
+  max-height:calc(100vh - 32px); overflow:auto; padding-block:28px 14px;
+}
+.contents h2 { font:650 .94rem/1.65 var(--sans); letter-spacing:0; margin-bottom:8px; }
+.contents ul { list-style:none; padding:0; }
+.contents a { display:block; width:fit-content; font-size:.94rem; font-weight:500; padding:5px 4px; }
+.guide-body { grid-area:body; min-width:0; }
+.guide-body section { padding-block:34px 36px; }
+.guide-body section+section { border-top:1px solid var(--rule); }
+.guide-body h2 { font-size:clamp(1.65rem, 2.6vw, 2.3rem); line-height:1.45; margin-bottom:18px; }
+.guide-body h3 { font-size:1.25rem; margin-block:26px 10px; line-height:1.6; }
+.guide-body strong,.guide-text-link { font-weight:650; }
+.guide-body p,.guide-body dd,.guide-body li { line-height:1.95; }
+.guide-body p+p,.guide-body dl+p,.guide-shot+p { margin-top:15px; }
+.guide-text-link { color:var(--accent); }
+.guide-body ol,.guide-body .action-list { padding-inline-start:1.6em; margin:14px 0; }
+.guide-body li { padding-left:3px; margin-bottom:7px; }
+.guide-body ol li::marker { color:var(--accent); font-weight:650; font-variant-numeric:tabular-nums; }
+.guide-editions { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-block:20px 10px; }
+.guide-editions>div { border-top:1px solid var(--rule); padding-top:10px; }
+.guide-editions dt,.formats dt { font:650 1rem/1.65 var(--sans); }
+.guide-body dd { margin:5px 0 0; font-size:1rem; color:var(--muted); }
+.guide-note { margin-top:22px; padding:14px 20px; border-left:3px solid var(--accent); background:#eeefe7; }
+.guide-note>strong { display:block; margin-bottom:5px; }
+.formats>div { padding:12px 0; border-bottom:1px solid #d6dacd; }
+.guide-shot { margin:22px 0 2px; }
+.guide-shot.compact { max-width:600px; }
+.guide-shot a { display:block; border:1px solid #adb2a5; background:#fff; cursor:zoom-in; }
+.guide-shot img { width:100%; height:auto; }
+.guide-shot figcaption { display:block; font-size:.875rem; line-height:1.7; }
+.guide-shot:has(+ul) { margin-bottom:18px; }
+.guide-page footer .foot-brand { font:600 18px/1.3 "Segoe UI",var(--sans); }
+@media (max-width:860px) {
+  .guide-layout { display:block; }
+  .contents { position:static; max-height:none; padding-block:18px; border-bottom:1px solid var(--rule); }
+  .contents ul { display:grid; gap:0 16px; grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .contents a { padding:4px 0; text-decoration:underline; text-decoration-color:#aeb4a5; }
+}
+@media (max-width:540px) {
+  .guide-editions { display:block; }
+  .guide-editions>div+div { margin-top:14px; }
+  .guide-layout { padding-bottom:30px; }
+  .guide-title { padding-bottom:22px; }
+  .guide-body section { padding-block:26px; }
+  .contents a { font-size:.9rem; }
+  .guide-shot figcaption { font-size:.84rem; }
+}
+@media print {
+  @page { margin:16mm; }
+  .guide-page { background:white; color:black; font-size:10pt; }
+  .guide-layout { display:block; padding:0; }
+  .guide-page .contents,.guide-text-link { display:none; }
+  .guide-title { padding-bottom:10pt; }
+  .guide-title h1 { font-size:28pt; }
+  .guide-body section { padding-block:14pt; }
+  .guide-body h2,.guide-body h3 { break-after:avoid; }
+  .guide-shot { break-inside:avoid; margin-top:10pt; }
+  .guide-shot img { width:auto; max-width:100%; max-height:104mm; margin:auto; }
+}
