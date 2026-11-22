@@ -6,9 +6,10 @@ import archive033 from "./campus-archive-0.3.3.json";
 import archive034 from "./campus-archive-0.3.4.json";
 import archive035 from "./campus-archive-0.3.5.json";
 import archive036 from "./campus-archive-0.3.6.json";
+import archive037 from "./campus-archive-0.3.7.json";
 
 const releases = "https://github.com/altimix/scene-finder-downloads/releases/download/";
-const archives = new Map([archive030, archive031, archive032, archive033, archive034, archive035, archive036, currentArchive].map(archive => ["/downloads/" + archive.name, archive]));
+const archives = new Map([archive030, archive031, archive032, archive033, archive034, archive035, archive036, archive037, currentArchive].map(archive => ["/downloads/" + archive.name, archive]));
 
 function windowFor(range, length) {
   if (!range) return [0, length - 1];
