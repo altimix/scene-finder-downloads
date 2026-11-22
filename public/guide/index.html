@@ -20,7 +20,7 @@
   </header>
   <main id="main" class="frame guide-layout" tabindex="-1">
     <div class="guide-title">
-      <p class="guide-edition">Scene Finder ／ Windows版 0.3.7</p>
+      <p class="guide-edition">Scene Finder ／ Windows版 0.3.8</p>
       <h1>使い方</h1>
       <p>「最終レポートの提出期限」で検索し、課題要項のどこに締切が書かれているかを調べる例です。画面には架空の講義資料を使っています。ご自身のPCでは、手元の資料に合わせて検索語を置き換えてください。画像はクリックやタップで拡大できます。</p>
     </div>
@@ -117,16 +117,23 @@
         <p>登録フォルダーの横の<strong>「…」</strong>で、その授業の自動要約をオンにします。初期設定はオフです。オンにした授業を選ぶと、一覧を表示したまま、本文を読み取れた文書をGemmaが1件ずつ要約します。通常版で初めて使うときは、下の手順でGemmaを追加してください。</p>
         <p>一覧で要点を読み、詳しく知りたい資料を開くと出典を確認できます。別の授業に移っても完成した要約はこのPCに残り、戻ると続きから進みます。文書の更新は「再解析」で取り込みます。その授業の自動要約をオフにすると、保存した要約も削除されます。</p>
         <figure class="guide-shot"><a href="/assets/guide/folder-summaries.webp" target="_blank" rel="noopener" aria-label="文書ごとの自動要約を拡大（新しいタブ）"><img src="/assets/guide/folder-summaries.webp" width="1371" height="611" alt="ファイル一覧で自動要約が2件完了し、読書会と中間発表の要点がそれぞれの資料の下に表示されている。" loading="lazy"></a><figcaption>各資料の「要約」を見比べられます。資料名を押すと要約の全文と出典が開きます。</figcaption></figure>
-        <h3>要約に使ったデバイスを確認する</h3>
-        <p>対応するIntel NPUを搭載したPCでは、手動・自動要約の言語生成にNPUを使います。利用できない場合はCPUで要約を続けます。実行中はアプリ左下の「OpenVINO」を開き、「Gemma」の行を確認できます。完了後は要約の見出しの下に「生成完了時 NPU」または「生成完了時 CPU」と表示されます。0.3.5以前に保存した要約にはデバイス名が付きません。画面上部のNPU負荷グラフには、ほかのアプリも含むPC全体の使用率が表示されます。</p>
-        <p>大学用オフライン版には、NPUとCPUの両方に対応するGemmaが入っています。配布元が案内しているWindows用Intel NPUドライバーのバージョンは32.0.100.4023です。通常版で以前のGemmaを追加した場合は、引き続きCPUで使えます。Intel NPUが検出されたPCで対応モデルを追加するときは、資料のプレビューで<strong>「NPU対応Gemmaを追加」</strong>を押します。</p>
+        <h3 id="npu">Gemmaでの要約にNPUを使う</h3>
+        <p>通常版と大学用オフライン版は、対応するIntel NPUを優先して文章を生成します。大学用にはNPU対応のGemmaが同梱されています。通常版で旧モデルを使用している場合は、対応PCのプレビューに表示される「NPU対応Gemmaを追加」から導入します。</p>
+        <ol>
+          <li>左下の<strong>「OpenVINO」</strong>かプレビューの<strong>「Gemmaの実行設定」</strong>を開きます。「Gemma要約の実行先」で<strong>「NPUのみ（使えないときは停止）」</strong>を選ぶと、GemmaがNPUで文章を生成できないときは理由が表示されます。CPUでも続けたい場合は「NPUを優先」に戻します。</li>
+          <li>文書を開いて<strong>「資料を要約」</strong>を押します。すでに保存済みなら<strong>「再度要約」</strong>を押してください。保存済みの結果を開くだけでは、新たな計算は発生しません。</li>
+          <li>実行中はプレビュー内の負荷グラフ、完了後は<strong>「生成完了時 NPU」</strong>で実行先を確認します。前処理ではCPUも使われます。「NPU全体」の線と60秒の最大値は、そのPC全体でWindowsが計測した値です。縦軸が自動で拡大するので、低い使用率も読み取れます。</li>
+        </ol>
+        <figure class="guide-shot compact"><a href="/assets/guide/gemma-device.webp" target="_blank" rel="noopener" aria-label="Gemmaの実行設定を拡大（新しいタブ）"><img src="/assets/guide/gemma-device.webp" width="645" height="243" alt="NPUのみを選択した設定画面。OpenVINOでIntel NPUを検出できず、NPU対応Gemmaは導入済みと表示されている。" loading="lazy"></a><figcaption>NPUを搭載していない検証用PCの画面です。「NPUのみ」を選ぶと、NPUを使えない場合は要約を停止します。</figcaption></figure>
+        <figure class="guide-shot"><a href="/assets/guide/gemma-load.webp" target="_blank" rel="noopener" aria-label="要約中の負荷グラフを拡大（新しいタブ）"><img src="/assets/guide/gemma-load.webp" width="969" height="210" alt="NPU全体は未検出、アプリCPUの使用率は破線のグラフで表示されている。Gemmaの実行先はCPU。" loading="lazy"></a><figcaption>同じPCで「NPUを優先」に戻し、実際に要約した例です。破線はアプリのCPU使用率で、下の「Gemma」の行で文章を生成しているデバイスを確認できます。</figcaption></figure>
+        <p>「未検出」「計測不可」などが表示されたら、実行設定でOpenVINOがIntel NPUを検出したか、NPU対応Gemmaが導入済みかを確認してください。「診断をコピー」には実行先や停止理由が入り、資料名や本文は入りません。ドライバーは大学の管理者またはPCメーカーの配布元で確認できます。<a href="https://huggingface.co/OpenVINO/gemma-4-E2B-it-int4-cw-ov" rel="noopener">モデル配布元の動作条件</a></p>
         <h3>ひとつの資料を手動で要約する</h3>
         <ol>
           <li>PDF、Word、Excel、PowerPoint、テキスト資料などの検索結果をひとつ開きます。</li>
           <li>通常版の初回は<strong>「Gemmaを追加（4.33 GB）」</strong>でモデルを取得し、完了後に<strong>「資料を要約」</strong>を押します。ダウンロードするのは要約用モデルです。原文にはこのPCで索引に取り込んだ資料の本文を使います。Gemmaを追加済みのPCと大学用オフライン版は、最初から「資料を要約」を押せます。</li>
           <li>下の例では「参照箇所（原文）」の<strong>「S1　1 行」</strong>を開きます。中間発表資料の提出期限が11月28日午後5時であることを、元の韓国語の案内で確認できます。</li>
         </ol>
-        <figure class="guide-shot compact"><a href="/assets/guide/summary.webp" target="_blank" rel="noopener" aria-label="日本語の要約と韓国語の原文を拡大（新しいタブ）"><img src="/assets/guide/summary.webp" width="969" height="533" alt="CPUで日本語に要約した中間発表の案内。提出期限は11月28日午後5時、提出するPDFは各チーム1件、発表時間は3分と表示され、下にS1の韓国語原文が開いている。" loading="lazy"></a><figcaption>韓国語で書かれた中間発表の案内。日本語の要約と原文を同じ画面で読み比べられます。</figcaption></figure>
+        <figure class="guide-shot compact"><a href="/assets/guide/summary.webp" target="_blank" rel="noopener" aria-label="日本語の要約と韓国語の原文を拡大（新しいタブ）"><img src="/assets/guide/summary.webp" width="969" height="618" alt="CPUで日本語に要約した中間発表の案内。提出期限は11月28日午後5時、提出するPDFは各チーム1件、発表時間は3分と表示され、下にS1の韓国語原文が開いている。" loading="lazy"></a><figcaption>韓国語で書かれた中間発表の案内。日本語の要約と原文を同じ画面で読み比べられます。</figcaption></figure>
         <p>処理中は経過時間が表示されます。このPCでの実績や進み具合から予測できるときは「残り約○秒」が出ます。プレビューを閉じて待つ場合は、完了通知の「要約を見る」から戻れます。</p>
         <h3 id="close-preview">読み終えた位置から検索結果に戻る</h3>
         <p>要約の参照番号を押して原文を読み、読み終えたらプレビュー右上の<strong>「×」</strong>を押します。本文や出典を末尾までスクロールしても「×」は同じ位置に残ります。キーボードでは<strong>Escキー</strong>で閉じられます。</p>
@@ -152,9 +159,9 @@
           <div><dt>追加した資料が見つからない</dt><dd>登録フォルダーの「…」から「再解析」を選びます。授業フォルダーを取り違えたときは、「すべてのフォルダー」と種類の「すべて」で検索し直します。</dd></div>
           <div><dt>スキャンしたPDFの文字が違う</dt><dd>「OCR」はWindowsの文字認識で読み取った抜粋です。日付や数値は元のPDFを開いて確かめてください。</dd></div>
           <div><dt>文字を大きくしたい</dt><dd>アプリ上部の「文字サイズ」で90〜150%を選べます。選んだ大きさは次に開いたときも引き継がれます。</dd></div>
-          <div><dt>以前、要約が韓国語で表示された</dt><dd>0.3.7に更新して、該当の資料を開き「資料を要約」を押してください。自動要約をオンにした授業では、フォルダーを選ぶと以前の外国語の要約を日本語で作り直します。</dd></div>
+          <div><dt>以前、要約が韓国語で表示された</dt><dd>0.3.7以降に更新して、該当の資料を開き「資料を要約」を押してください。自動要約をオンにした授業では、フォルダーを選ぶと以前の外国語の要約を日本語で作り直します。</dd></div>
           <div><dt>要約欄に「原文からの抜粋」と出た</dt><dd>Gemmaが日本語の要約を作れなかったときは、資料から日本語の文を引用して表示します。引用できる文もない場合は、プレビューで原文を読むか、もう一度要約してください。</dd></div>
-          <div><dt>NPUが見つからない</dt><dd>対応するIntel NPUが利用できるPCは検索にNPUを使えます。それ以外のPCではCPUで検索できます。検索モデルの処理先はアプリ左下の「OpenVINO」、直近60秒の使用率は上部の「処理負荷」で確認できます。資料の要約でも、対応モデルを用意したPCではIntel NPUを自動で利用します。CPUで続行した場合は、資料のプレビューで要約の実行先を確認できます。音声認識とテーマ別の整理はCPUで行います。</dd></div>
+          <div><dt>NPUのグラフが動かない</dt><dd>資料を新しく要約し、完了時に表示される実行先を確認します。グラフが計測不可でもNPUで生成できる場合があります。CPUに切り替わる理由を確認したいときは<a href="#npu">GemmaのNPU実行設定と診断</a>を開いてください。</dd></div>
         </dl>
         <p>教室でネットに接続できないときも、アプリ上部の「ヘルプ」から操作方法を読めます。</p>
         <a class="primary" href="/#downloads">ダウンロードへ</a>
