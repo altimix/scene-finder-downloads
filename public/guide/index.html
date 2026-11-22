@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f8f7f1">
-  <meta name="description" content="Scene Finderの使い方。授業フォルダーを登録し、検索結果からPDFの原文を開く手順を実際の画面で紹介します。音声検索、Gemmaの要約・整理、オフラインでの導入方法も掲載。">
+  <meta name="description" content="Scene Finder 0.3.8の操作ガイド。授業の資料から課題要項を探し、原文を開くまでを実画面で説明します。日本語要約、NPUの負荷グラフ、音声入力、資料整理の使い方も紹介します。">
   <title>使い方｜Scene Finder</title>
   <link rel="icon" href="/assets/brand.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
@@ -22,148 +22,237 @@
     <div class="guide-title">
       <p class="guide-edition">Scene Finder ／ Windows版 0.3.8</p>
       <h1>使い方</h1>
-      <p>「最終レポートの提出期限」で検索し、課題要項のどこに締切が書かれているかを調べる例です。画面には架空の講義資料を使っています。ご自身のPCでは、手元の資料に合わせて検索語を置き換えてください。画像はクリックやタップで拡大できます。</p>
+      <p>「最終レポートはいつまでに出すんだっけ？」と思ったら、授業のフォルダーから課題要項の該当ページを探せます。架空の大学資料を例に、フォルダーの登録から原文の確認までをたどります。画面の文字は、画像を押すと拡大して読めます。</p>
     </div>
     <nav class="contents" aria-label="使い方の目次">
       <h2>目次</h2>
       <ul>
-        <li><a href="#setup">インストールと起動</a></li>
-        <li><a href="#folder">フォルダーを登録する</a></li>
-        <li><a href="#search">資料を検索する</a></li>
+        <li><a href="#setup">インストールと初回起動</a></li>
+        <li><a href="#folder">授業フォルダーを登録する</a></li>
+        <li><a href="#search">提出期限を検索する</a></li>
         <li><a href="#source">原文と出典を確認する</a></li>
+        <li><a href="#summary">資料を日本語で要約する</a></li>
+        <li><a href="#auto">授業ごとに自動要約する</a></li>
+        <li><a href="#npu">NPUを使う・グラフを読む</a></li>
         <li><a href="#voice">声で検索する</a></li>
-        <li><a href="#summary">資料を要約する</a></li>
         <li><a href="#organize">選んだ資料を整理する</a></li>
         <li><a href="#help">困ったとき</a></li>
       </ul>
     </nav>
     <div class="guide-body">
       <section id="setup">
-        <h2>インストールと起動</h2>
-        <p>Windows 11 x64のPCで、授業に使う版を選びます。検索と音声入力はどちらの版でも初回からオフラインで使えます。</p>
+        <h2>インストールと初回起動</h2>
+        <p>Windows 11 x64向けです。教室にインターネット接続があるか、Gemmaを最初から使いたいかで、配布ファイルを選びます。</p>
         <dl class="guide-editions">
-          <div><dt>通常版</dt><dd>セットアップEXE（約727 MB）を実行します。検索だけならこれで準備完了です。要約・整理に使うGemmaは、必要になったときにアプリ内で追加できます（初回のみ約4.33 GBのダウンロード）。</dd></div>
-          <div><dt>大学用オフライン版</dt><dd>ネット接続のある場所でZIP（約5.05 GB）をダウンロードし、教室のPCにコピーします。ZIPをすべて展開し、3個のモデルデータと同じフォルダーにある <code>SceneFinder-Campus-Setup</code> で始まるEXEを実行します。Gemmaも入るので、初回から要約・整理ができます。</dd></div>
+          <div><dt>自分のPCで使う通常版</dt><dd>セットアップEXE（約727 MB）を実行します。検索と音声入力はすぐに使えます。要約や整理が必要になったら、アプリ内でGemmaを追加します。</dd></div>
+          <div><dt>大学用オフライン版</dt><dd>ネットに接続できる場所でZIP（約5.05 GB）を取得し、教室のPCで<strong>すべて展開</strong>します。3個のモデルデータと同じフォルダーにある <code>SceneFinder-Campus-Setup</code> で始まるEXEを実行すると、Gemmaまで一緒に入ります。</dd></div>
         </dl>
-        <p><a class="guide-text-link" href="/#downloads">Windows版のダウンロードへ</a></p>
-        <p>インストール後は、Windowsのスタートメニューで <strong>Scene Finder</strong> を開きます。専用ウィンドウで、このPCの資料を検索できます。WebView2を利用できないPCでは既定のブラウザーに同じ操作画面が開きます。</p>
-        <aside class="guide-note"><strong>どの作業にGemmaが必要？</strong><p>Intel OpenVINOが、処理に応じてPC内のAIモデルを動かします。検索には検索用モデル、音声入力にはWhisperを使います。要約とテーマ別の整理には、ローカルLLMのGemma 4 E2Bを使います。資料や録音をクラウドAIに送らずに使え、Geminiの契約やAPIキーも不要です。</p></aside>
+        <p><a class="guide-text-link" href="/#downloads">Windows版をダウンロードする</a></p>
+        <p>スタートメニューから <strong>Scene Finder</strong> を開きます。初めて起動すると、左の「登録フォルダー」は空です。検索したい授業の資料をひとつのフォルダーに用意してください。</p>
+        <figure class="guide-shot">
+          <a href="/assets/guide/welcome.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　初回の画面">
+            <img src="/assets/guide/welcome.webp?v=038-guide2" width="1550" height="1085" alt="初回の画面。左側は空の登録フォルダー、中央に「フォルダーを追加」。" loading="eager" decoding="async">
+          </a>
+          <figcaption>中央の「フォルダーを追加」から検索したい授業を登録します。</figcaption>
+        </figure>
+        <aside class="guide-note"><strong>資料はこのPCの中で扱います</strong><p>Intel OpenVINOが検索用モデルや音声認識のWhisperを動かします。日本語の要約とテーマ別の整理にはローカルLLMのGemma 4 E2Bを使います。授業の資料や録音をクラウドAIへ送らずに使えます。</p></aside>
       </section>
-
       <section id="folder">
-        <h2>フォルダーを登録する</h2>
+        <h2>授業フォルダーを登録する</h2>
         <ol>
-          <li>講義ひとつ分の資料をPCのフォルダーに用意し、アプリで<strong>「フォルダーを追加」</strong>を押します。専用ウィンドウではWindowsの選択画面が直接開きます。</li>
-          <li>そのフォルダーを選びます。ブラウザーで使うときや、別の場所を選び直すときは<strong>「参照…」</strong>を押します。「フォルダーの場所」にパスを貼り付けても指定できます。</li>
-          <li><strong>「解析を開始」</strong>を押します。中のサブフォルダーも対象です。解析が終わったら検索に進みます。</li>
+          <li>中央の<strong>「フォルダーを追加」</strong>を押します。2つ目からは、左側の「登録フォルダー」の横の<strong>「＋」</strong>から追加できます。</li>
+          <li>Windowsの選択画面で授業フォルダーを選びます。ブラウザーで使う場合は<strong>「参照…」</strong>を押します。「フォルダーの場所」にパスを貼り付ける方法もあります。</li>
+          <li>表示された場所を確かめて<strong>「解析を開始」</strong>を押します。サブフォルダーも対象です。終了したら、左側で授業名を選んでファイルの一覧を確認しましょう。</li>
         </ol>
-        <figure class="guide-shot compact"><a href="/assets/guide/folder-add.webp" target="_blank" rel="noopener" aria-label="フォルダーを追加する画面を拡大（新しいタブ）"><img src="/assets/guide/folder-add.webp" width="1032" height="624" alt="「フォルダーの場所」に授業資料のパスが入り、右下の「解析を開始」を押せる状態。" loading="lazy"></a><figcaption>フォルダーの場所を確認してから解析を始めます。</figcaption></figure>
-        <h3>授業ごとに見分けやすくする</h3>
-        <p>左側でフォルダーを選ぶと、その行に<strong>「選択中」</strong>と付きます。検索欄の上の<strong>「検索対象」</strong>でも、いま探しているフォルダーを確認できます。別の授業や「すべてのフォルダー」に切り替えると、検索欄が空になり、ファイルの種類も「すべて」に戻ります。選んだ範囲のファイル一覧と、PDFやスライドなどの件数を確認できます。件数は登録時に作った索引からすぐに表示されます。</p>
-        <p>よく使う授業を上に置くには、<strong>フォルダー名をドラッグ</strong>し、移したい位置に線が出たら離します。並べ替え中も選択中の授業と検索条件を保ちます。隣の<strong>「…」</strong>から「上へ移動」「下へ移動」や「アイコンの色」も選べます。色と順番は次回も引き継ぎます。</p>
-        <figure class="guide-shot compact"><a href="/assets/guide/folder-drag.webp" target="_blank" rel="noopener" aria-label="ドラッグで授業の順番を変更する画面を拡大（新しいタブ）"><img src="/assets/guide/folder-drag.webp" width="486" height="394" alt="登録フォルダーをドラッグすると、移動先の行の境目に線が表示される。" loading="lazy"></a><figcaption>フォルダー名をつかみ、置きたい位置の線で離します。</figcaption></figure>
-        <figure class="guide-shot compact"><a href="/assets/guide/folder-settings.webp" target="_blank" rel="noopener" aria-label="フォルダーの色と並び順の設定画面を拡大（新しいタブ）"><img src="/assets/guide/folder-settings.webp" width="720" height="627" alt="フォルダーの操作画面。「アイコンの色」と表示順の下に「このフォルダーを自動要約」のチェック欄がある。" loading="lazy"></a><figcaption>授業ごとの色、並び順、自動要約をここで設定できます。</figcaption></figure>
+        <figure class="guide-shot compact">
+          <a href="/assets/guide/folder-add.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　「フォルダーの場所」に「講義と課題」を指定した画面">
+            <img src="/assets/guide/folder-add.webp?v=038-guide2" width="600" height="348" alt="「フォルダーの場所」に「講義と課題」を指定した画面。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>正しい授業フォルダーを選んだことを確認して、「解析を開始」を押します。</figcaption>
+        </figure>
+        <h3>選択中の授業と並び順</h3>
+        <p>左側の<strong>「選択中」</strong>と検索欄の上の<strong>「検索対象」</strong>が、いま開いている授業です。別のフォルダーを選ぶと検索語が消え、種類は「すべて」に戻ります。授業をまたいで探すときは「すべてのフォルダー」を選んでください。</p>
+        <p>よく使う授業を上に置くには、左側のフォルダー名をドラッグします。マウスで動かしにくいときは「…」から「上へ移動」「下へ移動」を使えます。</p>
+        <figure class="guide-shot compact rail-shot">
+          <a href="/assets/guide/folder-drag.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　授業名をドラッグして、移動先の行の間に線が表示された画面">
+            <img src="/assets/guide/folder-drag.webp?v=038-guide2" width="304" height="385" alt="授業名をドラッグして、移動先の行の間に線が表示された画面。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>線が出た位置でマウスを離すと、授業の順番が変わります。</figcaption>
+        </figure>
+        <figure class="guide-shot compact">
+          <a href="/assets/guide/folder-settings.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　フォルダーの色、表示順、自動要約を選べる操作画面">
+            <img src="/assets/guide/folder-settings.webp?v=038-guide2" width="600" height="523" alt="フォルダーの色、表示順、自動要約を選べる操作画面。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>ここで設定した色と順番は、次に起動したときも引き継がれます。</figcaption>
+        </figure>
       </section>
-
       <section id="search">
-        <h2>資料を検索する</h2>
+        <h2>提出期限を検索する</h2>
         <ol>
-          <li>左の「登録フォルダー」から授業のフォルダーを選びます。授業をまたいで探すときは「すべてのフォルダー」を選びます。</li>
-          <li>「資料を探す」の検索欄に<strong>「最終レポートの提出期限」</strong>と入力します。配布物がPDFだと分かっているので、ここでは種類の<strong>「PDF」</strong>を選び、「検索」を押します。</li>
-          <li>結果はファイルごとに1行ずつ表示されます。この例の先頭には<strong>「最終レポート課題要項.pdf」</strong>が出ました。「p. 2」は、該当箇所がPDFの2ページ目にあるという意味です。</li>
+          <li>課題要項がある授業を選び、検索欄に<strong>「最終レポートの提出期限」</strong>と入力します。</li>
+          <li>今回は配布物がPDFだと分かっているので、種類の<strong>「PDF」</strong>を選び、<strong>「検索」</strong>を押します。形式が分からない場合は「すべて」で探せます。</li>
+          <li>結果の<strong>「最終レポート課題要項.pdf」</strong>を見ます。同じファイルはひとつの行にまとまります。ほかのページにも候補があれば、「ほかの該当箇所」から選べます。</li>
         </ol>
-        <figure class="guide-shot"><a href="/assets/guide/search-results.webp" target="_blank" rel="noopener" aria-label="PDFの検索結果を拡大（新しいタブ）"><img src="/assets/guide/search-results.webp" width="1280" height="900" alt="「最終レポートの提出期限」の検索結果。「資料に書かれていること」に提出期限と、課題要項の p. 2 へのリンクが表示されている。" loading="lazy"></a><figcaption>資料名を押すと、最も関連する箇所が開きます。「ほかの該当箇所」を開くと、同じファイルの別のページや抜粋も選べます。</figcaption></figure>
-        <h3>ほかの資料では、どこが見つかる？</h3>
-        <dl class="formats">
-          <div><dt>Word・Excel・PowerPoint</dt><dd>Wordは段落や表の行、Excelはシートとセル範囲、PowerPointはスライド番号を確認できます。対象は .docx・.xlsx・.pptx です。</dd></div>
-          <div><dt>研究ノート</dt><dd>テキストは行番号、Markdownは行番号と直前の見出しを手がかりに原文を探せます。</dd></div>
-          <div><dt>写真・動画</dt><dd>写っているものや動作を入力します。動画は5秒ごとの場面を検索し、再生に対応した形式なら見つかった時刻から確認できます。</dd></div>
-        </dl>
-        <details><summary>対応する21の拡張子を見る</summary><ul>
-          <li>文書・表・スライド　.pdf、.docx、.xlsx、.pptx</li>
-          <li>テキスト・研究ノート　.txt、.md</li>
-          <li>写真　.jpg、.jpeg、.png、.webp、.bmp、.tif、.tiff</li>
-          <li>動画　.mp4、.mov、.m4v、.webm、.mkv、.avi、.mts、.m2ts</li>
-        </ul><p>動画の読み取り・再生は、PCで利用できるコーデックにも依存します。</p></details>
+        <figure class="guide-shot">
+          <a href="/assets/guide/search-results.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　「最終レポートの提出期限」のPDF検索">
+            <img src="/assets/guide/search-results.webp?v=038-guide2" width="1550" height="1085" alt="「最終レポートの提出期限」のPDF検索。課題要項の2ページに書かれた締切が表示されている。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>「資料に書かれていること」の下にあるファイル名と「p. 2」が、締切の一文の出典です。</figcaption>
+        </figure>
+        <details><summary>検索できるファイルと見つかる箇所</summary>
+          <dl class="formats">
+            <div><dt>文書・表・スライド</dt><dd>PDFはページ、Word（.docx）は段落や表の行、Excel（.xlsx）はシートとセル範囲、PowerPoint（.pptx）はスライド番号が手がかりになります。</dd></div>
+            <div><dt>テキスト・Markdown</dt><dd>.txtは行番号、.mdは行番号と見出しから原文を探せます。</dd></div>
+            <div><dt>写真・動画</dt><dd>写っているものや動作を言葉で探せます。写真は .jpg、.jpeg、.png、.webp、.bmp、.tif、.tiff に対応します。動画は .mp4、.mov、.m4v、.webm、.mkv、.avi、.mts、.m2ts を5秒ごとの場面から検索します。再生できる形式はPCのコーデックによって変わります。</dd></div>
+          </dl>
+        </details>
       </section>
-
       <section id="source">
         <h2>原文と出典を確認する</h2>
-        <p>結果を選ぶと、ファイル名、ページ番号、見つかった箇所の抜粋が開きます。この例では課題要項の2ページに、<strong>「最終レポートの提出期限は 2027 年 1 月 15 日（金）17 時です。」</strong>と書かれています。</p>
-        <figure class="guide-shot compact"><a href="/assets/guide/source-preview.webp" target="_blank" rel="noopener" aria-label="課題要項の原文と操作ボタンを拡大（新しいタブ）"><img src="/assets/guide/source-preview.webp" width="712" height="702" alt="課題要項の2ページ目の抜粋に提出期限があり、その下に「出典をコピー」「PDFの2ページを開く」が並ぶ。" loading="lazy"></a><figcaption>原文の抜粋のすぐ下から、PDFの該当ページを開けます。</figcaption></figure>
-        <ul class="action-list">
-          <li><strong>前後も読みたいとき</strong>は「PDFの2ページを開く」を押します。日付や採点基準は、提出前に元のページで確かめられます。</li>
-          <li><strong>レポートのメモに残すとき</strong>は「出典をコピー」を押します。ファイル名・箇所・抜粋を一緒に貼り付けられます。</li>
-          <li><strong>手元で編集するとき</strong>は「元ファイルを開く」、同じ場所の配布物も見たいときは「保存先を開く」を選びます。</li>
-          <li><strong>検索結果に戻るとき</strong>は、プレビュー右上の「×」を押します。<a href="#close-preview">スクロール後の画面を見る</a></li>
-        </ul>
+        <p>結果の資料名か、抜粋の下の出典を押します。<strong>「p. 2」</strong>はPDFの2ページ目です。今回の架空の課題要項には、締切が<strong>2027年1月15日（金）17時</strong>と書かれています。</p>
+        <figure class="guide-shot compact">
+          <a href="/assets/guide/source-preview.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　課題要項のp. 2の原文と、「出典をコピー」「PDFの2ページを開く」ボタン">
+            <img src="/assets/guide/source-preview.webp?v=038-guide2" width="890" height="918" alt="課題要項のp. 2の原文と、「出典をコピー」「PDFの2ページを開く」ボタン。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>前後の説明は「PDFの2ページを開く」、授業メモに出典を残すときは「出典をコピー」を使います。</figcaption>
+        </figure>
+        <p>「出典をコピー」を押し、手元のメモに貼り付けてみましょう。ファイル名、箇所、抜粋が一緒に入ります。「元ファイルを開く」は資料自体を、「保存先を開く」は資料のあるフォルダーを開きます。</p>
       </section>
-
+      <section id="summary">
+        <h2>資料を日本語で要約する</h2>
+        <p>ひとつの資料の要点を知りたいときは、検索結果から文書を開き、プレビューの<strong>「日本語の要約」</strong>へ進みます。</p>
+        <ol>
+          <li>通常版で初めて使うときは<strong>「Gemmaを追加（4.33 GB）」</strong>を押し、取得を待ちます。大学用オフライン版と追加済みのPCでは、次の操作から始められます。</li>
+          <li><strong>「資料を要約」</strong>を押します。処理中は経過時間が表示され、見積もれるときは残り時間も表示されます。プレビューを閉じて待った場合は、完了通知の「要約を見る」で戻れます。</li>
+          <li>要点を読んだら<strong>「参照箇所（原文）」</strong>を開きます。要点に［S1］のような参照番号が付いているときは、その番号から対応する箇所へ移れます。</li>
+        </ol>
+        <figure class="guide-shot">
+          <a href="/assets/guide/gemma-add.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　通常版の「日本語の要約」欄に「Gemmaを追加（4.33 GB）」と表示されている">
+            <img src="/assets/guide/gemma-add.webp?v=038-guide2" width="969" height="206" alt="通常版の「日本語の要約」欄に「Gemmaを追加（4.33 GB）」と表示されている。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>通常版の初回にダウンロードするのはGemmaのモデルです。要約の原文には、このPCにある資料を使います。</figcaption>
+        </figure>
+        <h3>外国語の案内を日本語で読む</h3>
+        <p>次は、韓国語で書かれた中間発表の案内です。資料を日本語で要約し、提出期限の「11月28日午後5時」を原文と照らし合わせます。</p>
+        <figure class="guide-shot compact">
+          <a href="/assets/guide/summary.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　中間発表についての日本語要約の下に、参照箇所の韓国語原文が開いている">
+            <img src="/assets/guide/summary.webp?v=038-guide2" width="1139" height="1141" alt="中間発表についての日本語要約の下に、参照箇所の韓国語原文が開いている。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>要点や参照番号を読み、原文に戻って日付や提出方法を確かめます。</figcaption>
+        </figure>
+        <h3 id="close-preview">読んだ位置から一覧へ戻る</h3>
+        <p>要約の参照箇所までスクロールしても、右上の<strong>「×」</strong>は押せます。キーボードではEscキーで閉じられます。</p>
+        <figure class="guide-shot compact">
+          <a href="/assets/guide/preview-close.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　原文までスクロールしたプレビューの右上に「×」が見えている">
+            <img src="/assets/guide/preview-close.webp?v=038-guide2" width="1138" height="605" alt="原文までスクロールしたプレビューの右上に「×」が見えている。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>原文を読み終えたら、その位置から右上の「×」で一覧に戻れます。</figcaption>
+        </figure>
+      </section>
+      <section id="auto">
+        <h2>授業ごとに自動要約する</h2>
+        <p>授業を開いている間に、各文書を順番に要約できます。初期設定はオフです。</p>
+        <ol>
+          <li>Gemmaを追加したPCで、授業名の横の<strong>「…」</strong>を開き、<strong>「このフォルダーを自動要約」</strong>にチェックを入れます。</li>
+          <li>その授業を選びます。本文を読み取れた文書を1件ずつ処理し、完了した資料から一覧に要点が付きます。</li>
+          <li>別の授業に移っても、完成した分は保存されます。同じ授業に戻ると続きが進みます。資料を追加・更新したら「…」から<strong>「再解析」</strong>を選びます。</li>
+        </ol>
+        <figure class="guide-shot">
+          <a href="/assets/guide/folder-summaries.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　自動要約した授業の一覧">
+            <img src="/assets/guide/folder-summaries.webp?v=038-guide2" width="1405" height="653" alt="自動要約した授業の一覧。文書ごとに日本語の要点が付いている。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>「自動要約済み　2 / 2文書」と表示された一覧。読書会のお知らせと中間発表の案内の要点を見比べられます。資料名を押すと全文と参照箇所が開きます。</figcaption>
+        </figure>
+        <p>自動要約をオフにすると、そのフォルダーに保存した要約を削除します。</p>
+      </section>
+      <section id="npu">
+        <h2>Gemmaの要約にNPUを使う</h2>
+        <p>対応するIntel NPUがあり、NPU対応のGemmaを導入していれば、要約の文章生成にNPUを使えます。通常版で古いモデルを使っている場合は、対応PCの資料プレビューに表示される<strong>「NPU対応Gemmaを追加」</strong>から導入します。</p>
+        <ol>
+          <li>左下の<strong>「OpenVINO」</strong>か、資料のプレビューの<strong>「Gemmaの実行設定」</strong>を開きます。</li>
+          <li>初期値は<strong>「NPUを優先（使えないときはCPU）」</strong>です。NPUでの生成を確かめたいときは<strong>「NPUのみ（使えないときは停止）」</strong>を選びます。使えなければ理由が表示されます。</li>
+          <li>文書を開いて「資料を要約」を押します。すでに要約がある文書は<strong>「再度要約」</strong>を押してください。完了後に<strong>「生成完了時 NPU」</strong>と出れば、その要約の文章生成にNPUが使われています。</li>
+        </ol>
+        <figure class="guide-shot compact">
+          <a href="/assets/guide/gemma-device.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　「Gemma要約の実行先」で「NPUのみ（使えないときは停止）」を選んだ設定画面">
+            <img src="/assets/guide/gemma-device.webp?v=038-guide2" width="768" height="1094" alt="「Gemma要約の実行先」で「NPUのみ（使えないときは停止）」を選んだ設定画面。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>撮影用PCの実画面。Intel NPUの検出状態と、対応するGemmaが導入されているかをここで確認できます。</figcaption>
+        </figure>
+        <h3 id="npu-graph">負荷グラフの読み方</h3>
+        <p>横軸は直近60秒です。<strong>実線はPC全体のNPU使用率、破線はScene FinderのCPU使用率</strong>を示します。負荷が小さいときは縦軸が拡大するので、左側の目盛りで割合を読んでください。</p>
+        <figure class="guide-shot">
+          <a href="/assets/guide/npu-example.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　模擬データによるNPUの負荷グラフ">
+            <img src="/assets/guide/npu-example.webp?v=038-guide2" width="1035" height="303" alt="模擬データによるNPUの負荷グラフ。NPU全体は現在62%、直近60秒の最大81%。CPUは破線。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>模擬データによる表示例です。現在のNPU使用率は62%、直近60秒の最大は81%。下の「Gemma · NPU」は、要約に使っている実行先の表示例です。</figcaption>
+        </figure>
+        <details class="graph-playback">
+          <summary>グラフの動きを見る（12秒・模擬データ）</summary>
+          <video controls playsinline preload="none" width="1036" height="304" poster="/assets/guide/npu-example.webp?v=038-guide2" aria-label="NPUの負荷グラフの表示例。説明用の数値が1秒ごとに変わる12秒の無音動画。">
+            <source src="/assets/guide/npu-example.mp4?v=038-guide2" type="video/mp4">
+            <a href="/assets/guide/npu-example.mp4?v=038-guide2">グラフの動きを動画で開く</a>
+          </video>
+          <p>再生すると、1秒ごとに右端へ新しい値が加わります。この例では62%から77%まで上がり、22%まで下がった後に62%へ戻ります。</p>
+        </details>
+        <p>使用率はほかのアプリの影響も受けます。Scene Finderが使った実行先は、実行中ならグラフの下の<strong>「Gemma」</strong>、完了後なら要約欄で確認できます。前処理にはCPUも使われます。</p>
+        <figure class="guide-shot">
+          <a href="/assets/guide/gemma-load.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　撮影用PCでGemmaがCPUで要約中の実画面">
+            <img src="/assets/guide/gemma-load.webp?v=038-guide2" width="1139" height="542" alt="撮影用PCでGemmaがCPUで要約中の実画面。NPU全体は「未検出」、CPUの負荷は破線で表示。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>こちらは撮影用PCの実測です。NPUの欄には「未検出」、要約の実行先には「Gemma · CPU」と表示されています。</figcaption>
+        </figure>
+        <p><strong>「未検出」</strong>はNPUが見つからず、<strong>「計測不可」</strong>はWindowsから使用率が取れなかった状態です。「Gemmaの実行設定」の<strong>「診断をコピー」</strong>を使うと、機種や実行先、停止理由を大学の管理者に伝えられます。診断には資料名や本文は入りません。</p>
+      </section>
       <section id="voice">
         <h2>声で検索する</h2>
         <ol>
-          <li>対象フォルダーを選び、検索欄の<strong>「音声入力」</strong>を押します。「音声入力にこのPCのマイクを使用しますか？」と表示されたら<strong>「はい」</strong>を選びます。ブラウザーで使う場合は、ブラウザーの確認画面でマイクの使用を許可します。</li>
-          <li>「最終レポートの提出期限を探して」と話します。マイクが拾った音に合わせて波形が動きます。話し終えて約1.4秒待つと、自動で録音が終わります。</li>
-          <li>音声から検索語が読み取れると、選んだフォルダーの検索が自動で始まります。科目名などの聞き違いがあれば、検索欄で直して<strong>「検索」</strong>を押します。</li>
+          <li>授業を選び、検索欄の<strong>「音声入力」</strong>を押します。初回はマイクの使用を許可します。</li>
+          <li>たとえば「最終レポートの提出期限を探して」と話します。音を拾うと波形が動きます。話し終えて約1.4秒の無音が続くと録音が終わります。</li>
+          <li>認識した言葉で検索が始まります。科目名などを直したいときは、検索欄を編集して「検索」を押します。</li>
         </ol>
-        <figure class="guide-shot"><a href="/assets/guide/voice-input.webp" target="_blank" rel="noopener" aria-label="録音中の波形と検索欄を拡大（新しいタブ）"><img src="/assets/guide/voice-input.webp" width="1401" height="486" alt="検索欄には「録音を終了」ボタンがあり、録音中の波形に話し声の強弱が表れている。" loading="lazy"></a><figcaption>波形でマイクの反応を確認できます。音声の認識はPC内で行い、録音ファイルは保存しません。</figcaption></figure>
-        <p>自分で区切るときは<strong>「録音を終了」</strong>、取り消すときは<strong>「取り消す」</strong>かEscキーを押します。1回の録音は最長20秒です。</p>
+        <figure class="guide-shot">
+          <a href="/assets/guide/voice-input.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　日本語の操作例を音声入力している画面">
+            <img src="/assets/guide/voice-input.webp?v=038-guide2" width="1317" height="288" alt="日本語の操作例を音声入力している画面。検索欄の下に波形が見える。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>波形の動きで音を拾っているか確認します。撮影には操作例の日本語音声を使いました。</figcaption>
+        </figure>
+        <p>自分で区切るときは<strong>「録音を終了」</strong>、やり直すときは「取り消す」かEscキーを使います。録音は1回最長20秒です。</p>
       </section>
-
-      <section id="summary">
-        <h2>資料を要約する</h2>
-        <p>英語や韓国語の資料を開いても、「日本語の要約」で要点を読めます。日付や数値の根拠を確かめるには、要約の下にある<strong>「参照箇所（原文）」</strong>で項目を開きます。要点の横に［S1］などの参照番号があるときは、番号からも対応する原文を開けます。</p>
-        <h3>授業の資料を自動で要約する</h3>
-        <p>登録フォルダーの横の<strong>「…」</strong>で、その授業の自動要約をオンにします。初期設定はオフです。オンにした授業を選ぶと、一覧を表示したまま、本文を読み取れた文書をGemmaが1件ずつ要約します。通常版で初めて使うときは、下の手順でGemmaを追加してください。</p>
-        <p>一覧で要点を読み、詳しく知りたい資料を開くと出典を確認できます。別の授業に移っても完成した要約はこのPCに残り、戻ると続きから進みます。文書の更新は「再解析」で取り込みます。その授業の自動要約をオフにすると、保存した要約も削除されます。</p>
-        <figure class="guide-shot"><a href="/assets/guide/folder-summaries.webp" target="_blank" rel="noopener" aria-label="文書ごとの自動要約を拡大（新しいタブ）"><img src="/assets/guide/folder-summaries.webp" width="1371" height="611" alt="ファイル一覧で自動要約が2件完了し、読書会と中間発表の要点がそれぞれの資料の下に表示されている。" loading="lazy"></a><figcaption>各資料の「要約」を見比べられます。資料名を押すと要約の全文と出典が開きます。</figcaption></figure>
-        <h3 id="npu">Gemmaでの要約にNPUを使う</h3>
-        <p>通常版と大学用オフライン版は、対応するIntel NPUを優先して文章を生成します。大学用にはNPU対応のGemmaが同梱されています。通常版で旧モデルを使用している場合は、対応PCのプレビューに表示される「NPU対応Gemmaを追加」から導入します。</p>
-        <ol>
-          <li>左下の<strong>「OpenVINO」</strong>かプレビューの<strong>「Gemmaの実行設定」</strong>を開きます。「Gemma要約の実行先」で<strong>「NPUのみ（使えないときは停止）」</strong>を選ぶと、GemmaがNPUで文章を生成できないときは理由が表示されます。CPUでも続けたい場合は「NPUを優先」に戻します。</li>
-          <li>文書を開いて<strong>「資料を要約」</strong>を押します。すでに保存済みなら<strong>「再度要約」</strong>を押してください。保存済みの結果を開くだけでは、新たな計算は発生しません。</li>
-          <li>実行中はプレビュー内の負荷グラフ、完了後は<strong>「生成完了時 NPU」</strong>で実行先を確認します。前処理ではCPUも使われます。「NPU全体」の線と60秒の最大値は、そのPC全体でWindowsが計測した値です。縦軸が自動で拡大するので、低い使用率も読み取れます。</li>
-        </ol>
-        <figure class="guide-shot compact"><a href="/assets/guide/gemma-device.webp" target="_blank" rel="noopener" aria-label="Gemmaの実行設定を拡大（新しいタブ）"><img src="/assets/guide/gemma-device.webp" width="645" height="243" alt="NPUのみを選択した設定画面。OpenVINOでIntel NPUを検出できず、NPU対応Gemmaは導入済みと表示されている。" loading="lazy"></a><figcaption>NPUを搭載していない検証用PCの画面です。「NPUのみ」を選ぶと、NPUを使えない場合は要約を停止します。</figcaption></figure>
-        <figure class="guide-shot"><a href="/assets/guide/gemma-load.webp" target="_blank" rel="noopener" aria-label="要約中の負荷グラフを拡大（新しいタブ）"><img src="/assets/guide/gemma-load.webp" width="969" height="210" alt="NPU全体は未検出、アプリCPUの使用率は破線のグラフで表示されている。Gemmaの実行先はCPU。" loading="lazy"></a><figcaption>同じPCで「NPUを優先」に戻し、実際に要約した例です。破線はアプリのCPU使用率で、下の「Gemma」の行で文章を生成しているデバイスを確認できます。</figcaption></figure>
-        <p>「未検出」「計測不可」などが表示されたら、実行設定でOpenVINOがIntel NPUを検出したか、NPU対応Gemmaが導入済みかを確認してください。「診断をコピー」には実行先や停止理由が入り、資料名や本文は入りません。ドライバーは大学の管理者またはPCメーカーの配布元で確認できます。<a href="https://huggingface.co/OpenVINO/gemma-4-E2B-it-int4-cw-ov" rel="noopener">モデル配布元の動作条件</a></p>
-        <h3>ひとつの資料を手動で要約する</h3>
-        <ol>
-          <li>PDF、Word、Excel、PowerPoint、テキスト資料などの検索結果をひとつ開きます。</li>
-          <li>通常版の初回は<strong>「Gemmaを追加（4.33 GB）」</strong>でモデルを取得し、完了後に<strong>「資料を要約」</strong>を押します。ダウンロードするのは要約用モデルです。原文にはこのPCで索引に取り込んだ資料の本文を使います。Gemmaを追加済みのPCと大学用オフライン版は、最初から「資料を要約」を押せます。</li>
-          <li>下の例では「参照箇所（原文）」の<strong>「S1　1 行」</strong>を開きます。中間発表資料の提出期限が11月28日午後5時であることを、元の韓国語の案内で確認できます。</li>
-        </ol>
-        <figure class="guide-shot compact"><a href="/assets/guide/summary.webp" target="_blank" rel="noopener" aria-label="日本語の要約と韓国語の原文を拡大（新しいタブ）"><img src="/assets/guide/summary.webp" width="969" height="618" alt="CPUで日本語に要約した中間発表の案内。提出期限は11月28日午後5時、提出するPDFは各チーム1件、発表時間は3分と表示され、下にS1の韓国語原文が開いている。" loading="lazy"></a><figcaption>韓国語で書かれた中間発表の案内。日本語の要約と原文を同じ画面で読み比べられます。</figcaption></figure>
-        <p>処理中は経過時間が表示されます。このPCでの実績や進み具合から予測できるときは「残り約○秒」が出ます。プレビューを閉じて待つ場合は、完了通知の「要約を見る」から戻れます。</p>
-        <h3 id="close-preview">読み終えた位置から検索結果に戻る</h3>
-        <p>要約の参照番号を押して原文を読み、読み終えたらプレビュー右上の<strong>「×」</strong>を押します。本文や出典を末尾までスクロールしても「×」は同じ位置に残ります。キーボードでは<strong>Escキー</strong>で閉じられます。</p>
-        <figure class="guide-shot compact"><a href="/assets/guide/preview-close.webp" target="_blank" rel="noopener" aria-label="スクロールしたプレビューと閉じるボタンを拡大（新しいタブ）"><img src="/assets/guide/preview-close.webp" width="1424" height="1002" alt="要約の下にある参照箇所S4を開いた画面。課題要項の2ページ目にある提出期限の原文と、プレビュー右上の「×」が同時に見える。" loading="lazy"></a><figcaption>課題要項の2ページ目を確認したところ。右上の「×」から検索結果に戻れます。</figcaption></figure>
-      </section>
-
       <section id="organize">
         <h2>選んだ資料を整理する</h2>
-        <p>ゼミの発表に使う図表や配布資料をまとめておくときに使います。元ファイルを今の場所に置いたまま、出典へのリンクが付いた分類表を作れます。</p>
+        <p>ゼミ発表に使う資料を集めたら、出典付きの分類表を作れます。元ファイルはその場所に置いたまま、発表準備用のメモを保存できます。</p>
         <ol>
-          <li>たとえば「気温観測」で検索し、結果一覧の<strong>「資料を選択」</strong>を押します。使いたい箇所にチェックを入れます。同じ資料の別の箇所もまとめて選ぶときは、先に「ほかの該当箇所」を開いてから<strong>「表示中をすべて選択」</strong>を押します。</li>
-          <li><strong>「選んだ資料を整理」</strong>を押すか、音声入力で「選んだ資料を整理して」と話します。通常版でGemmaをまだ入れていない場合は、画面の案内から追加します。</li>
+          <li>授業やキーワードで対象を絞り、一覧上部の<strong>「資料を選択」</strong>を押します。ここでは「気温観測」の検索結果を使います。</li>
+          <li>使いたい資料・箇所にチェックを入れます。同じファイルの別の箇所も選ぶときは「ほかの該当箇所」を開きます。「表示中をすべて選択」でもまとめて選べます。最大60箇所まで選べます。</li>
+          <li><strong>「選んだ資料を整理」</strong>を押します。音声入力で「選んだ資料を整理して」と指示することもできます。</li>
         </ol>
-        <figure class="guide-shot"><a href="/assets/guide/selection.webp" target="_blank" rel="noopener" aria-label="資料にチェックを入れる画面を拡大（新しいタブ）"><img src="/assets/guide/selection.webp" width="1401" height="920" alt="検索結果の左にチェック欄があり、選んだ件数と「選んだ資料を整理」が一覧の上に表示されている。" loading="lazy"></a><figcaption>整理の対象を選びます。同じファイルの別の箇所も選択できます。</figcaption></figure>
-        <p>Gemmaが選択した最大60箇所を資料ごとにまとめ、日本語でテーマを付けます。ファイル名は元の表記で表示されます。セル範囲やページ番号を押すと該当箇所に戻れます。最後に<strong>「整理結果をテキストで保存」</strong>を押して発表準備のメモに残します。保存したテキストには元ファイルのパスと参照箇所も入ります。</p>
-        <figure class="guide-shot"><a href="/assets/guide/organize.webp" target="_blank" rel="noopener" aria-label="テーマ別の整理結果を拡大（新しいタブ）"><img src="/assets/guide/organize.webp" width="1401" height="635" alt="「環境調査演習」のテーマに4資料がまとまり、Excelのセル範囲、PDFのページ、スライド番号へのリンクが並ぶ。" loading="lazy"></a><figcaption>「環境調査演習」というテーマにまとめられた4資料。</figcaption></figure>
+        <figure class="guide-shot">
+          <a href="/assets/guide/selection.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　「気温観測」の検索結果から整理に使いたい資料を選択した画面">
+            <img src="/assets/guide/selection.webp?v=038-guide2" width="1311" height="935" alt="「気温観測」の検索結果から整理に使いたい資料を選択した画面。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>「気温観測」の検索結果から、Excelの観測表、機材の貸出・返却票、課題要項の3箇所を選んでいます。</figcaption>
+        </figure>
+        <p>Gemmaが日本語のテーマを付け、選んだ資料を分類します。手元に残すには<strong>「整理結果をテキストで保存」</strong>を押します。保存したメモには元のファイル名、パス、参照箇所が入ります。</p>
+        <figure class="guide-shot">
+          <a href="/assets/guide/organize.webp?v=038-guide2" target="_blank" rel="noopener" aria-label="拡大表示（新しいタブ）　選んだ資料のテーマ別分類と、元の資料を開く参照リンク">
+            <img src="/assets/guide/organize.webp?v=038-guide2" width="1275" height="669" alt="選んだ資料のテーマ別分類と、元の資料を開く参照リンク。" loading="lazy" decoding="async">
+          </a>
+          <figcaption>観測表と貸出・返却票は「観測活動の実施と記録」に、課題要項は「調査の目的と課題設定」に分類されました。各ファイル名の横のページ番号やセル範囲を押すと、その箇所の抜粋を開けます。</figcaption>
+        </figure>
       </section>
-
       <section id="help">
         <h2>困ったとき</h2>
         <dl class="formats">
-          <div><dt>フォルダーの選択画面が見当たらない</dt><dd>「再表示」を押すとWindowsの選択画面を手前に戻せます。フォルダーのパスを「フォルダーの場所」に直接貼り付けることもできます。</dd></div>
-          <div><dt>追加した資料が見つからない</dt><dd>登録フォルダーの「…」から「再解析」を選びます。授業フォルダーを取り違えたときは、「すべてのフォルダー」と種類の「すべて」で検索し直します。</dd></div>
-          <div><dt>スキャンしたPDFの文字が違う</dt><dd>「OCR」はWindowsの文字認識で読み取った抜粋です。日付や数値は元のPDFを開いて確かめてください。</dd></div>
-          <div><dt>文字を大きくしたい</dt><dd>アプリ上部の「文字サイズ」で90〜150%を選べます。選んだ大きさは次に開いたときも引き継がれます。</dd></div>
-          <div><dt>以前、要約が韓国語で表示された</dt><dd>0.3.7以降に更新して、該当の資料を開き「資料を要約」を押してください。自動要約をオンにした授業では、フォルダーを選ぶと以前の外国語の要約を日本語で作り直します。</dd></div>
-          <div><dt>要約欄に「原文からの抜粋」と出た</dt><dd>Gemmaが日本語の要約を作れなかったときは、資料から日本語の文を引用して表示します。引用できる文もない場合は、プレビューで原文を読むか、もう一度要約してください。</dd></div>
-          <div><dt>NPUのグラフが動かない</dt><dd>資料を新しく要約し、完了時に表示される実行先を確認します。グラフが計測不可でもNPUで生成できる場合があります。CPUに切り替わる理由を確認したいときは<a href="#npu">GemmaのNPU実行設定と診断</a>を開いてください。</dd></div>
+          <div><dt>フォルダーの選択画面が見当たらない</dt><dd>「再表示」を押して手前に戻すか、「フォルダーの場所」にパスを貼り付けます。</dd></div>
+          <div><dt>新しい資料が検索に出ない</dt><dd>授業名の横の「…」から「再解析」を押します。保存先が分からなければ「すべてのフォルダー」で探します。</dd></div>
+          <div><dt>スキャンしたPDFの日付を確かめたい</dt><dd>「OCR」と付いた抜粋は文字認識の結果です。プレビューから元のPDFを開き、日付や数値を確かめてください。</dd></div>
+          <div><dt>画面の文字を大きくしたい</dt><dd>右上の「文字サイズ」から90〜150%を選べます。次回の起動にも引き継がれます。</dd></div>
+          <div><dt>以前作った要約が韓国語で表示される</dt><dd>0.3.8に更新し、資料を開いて「資料を要約」を押します。自動要約をオンにした授業は、そのフォルダーを選ぶと再生成が進みます。要約の下の「参照箇所（原文）」では、資料が書かれた言語のまま読めます。</dd></div>
+          <div><dt>要約欄に「原文からの抜粋」と出た</dt><dd>日本語の要約を生成できなかったときに表示する、原文からの引用です。元の資料を読むか、「再度要約」を押します。</dd></div>
+          <div><dt>NPUのグラフが動かない</dt><dd>保存済みの要約を開くと新しい生成は始まりません。「再度要約」を押し、<a href="#npu">実行先と計測状態</a>を確認してください。</dd></div>
         </dl>
-        <p>教室でネットに接続できないときも、アプリ上部の「ヘルプ」から操作方法を読めます。</p>
+        <p>オフラインの教室では、アプリ右上の<strong>「ヘルプ」</strong>から操作説明を読めます。</p>
         <a class="primary" href="/#downloads">ダウンロードへ</a>
       </section>
     </div>
