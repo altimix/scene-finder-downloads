@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f8f7f1">
-  <meta name="description" content="Scene Finder 0.3.8の操作ガイド。授業の資料から課題要項を探し、原文を開くまでを実画面で説明します。日本語要約、NPUの負荷グラフ、音声入力、資料整理の使い方も紹介します。">
+  <meta name="description" content="Scene Finder 0.3.9の操作ガイド。授業の資料から課題要項を探し、原文を開くまでを実画面で説明します。日本語要約、NPUの負荷グラフ、音声入力、資料整理の使い方も紹介します。">
   <title>使い方｜Scene Finder</title>
   <link rel="icon" href="/assets/brand.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
@@ -20,7 +20,7 @@
   </header>
   <main id="main" class="frame guide-layout" tabindex="-1">
     <div class="guide-title">
-      <p class="guide-edition">Scene Finder ／ Windows版 0.3.8</p>
+      <p class="guide-edition">Scene Finder ／ Windows版 0.3.9</p>
       <h1>使い方</h1>
       <p>「最終レポートはいつまでに出すんだっけ？」と思ったら、授業のフォルダーから課題要項の該当ページを探せます。架空の大学資料を例に、フォルダーの登録から原文の確認までをたどります。画面の文字は、画像を押すと拡大して読めます。</p>
     </div>
@@ -36,6 +36,7 @@
         <li><a href="#npu">NPUを使う・グラフを読む</a></li>
         <li><a href="#voice">声で検索する</a></li>
         <li><a href="#organize">選んだ資料を整理する</a></li>
+        <li><a href="#exit">アプリを終了する</a></li>
         <li><a href="#help">困ったとき</a></li>
       </ul>
     </nav>
@@ -241,6 +242,11 @@
           <figcaption>観測表と貸出・返却票は「観測活動の実施と記録」に、課題要項は「調査の目的と課題設定」に分類されました。各ファイル名の横のページ番号やセル範囲を押すと、その箇所の抜粋を開けます。</figcaption>
         </figure>
       </section>
+      <section id="exit">
+        <h2>アプリを終了する</h2>
+        <p>作業が終わったら、Windowsの<strong>Scene Finderウィンドウ右上の「×」</strong>を押します。実行中の解析や要約を中止し、検索サービスと読み込んだモデルのメモリーを解放します。次にアプリを開くと、登録済みの資料と保存済みの自動要約を使えます。</p>
+        <p>要約を続けたまま一覧に戻るには、<a href="#close-preview">資料プレビュー内の「×」</a>を押してください。既定ブラウザーで使っている場合は、最後のScene Finder検索画面のタブを閉じるとアプリが終了します。画面左下の<strong>「OpenVINO」→「アプリを終了」</strong>からも終了できます。</p>
+      </section>
       <section id="help">
         <h2>困ったとき</h2>
         <dl class="formats">
@@ -248,7 +254,7 @@
           <div><dt>新しい資料が検索に出ない</dt><dd>授業名の横の「…」から「再解析」を押します。保存先が分からなければ「すべてのフォルダー」で探します。</dd></div>
           <div><dt>スキャンしたPDFの日付を確かめたい</dt><dd>「OCR」と付いた抜粋は文字認識の結果です。プレビューから元のPDFを開き、日付や数値を確かめてください。</dd></div>
           <div><dt>画面の文字を大きくしたい</dt><dd>右上の「文字サイズ」から90〜150%を選べます。次回の起動にも引き継がれます。</dd></div>
-          <div><dt>以前作った要約が韓国語で表示される</dt><dd>0.3.8に更新し、資料を開いて「資料を要約」を押します。自動要約をオンにした授業は、そのフォルダーを選ぶと再生成が進みます。要約の下の「参照箇所（原文）」では、資料が書かれた言語のまま読めます。</dd></div>
+          <div><dt>以前作った要約が韓国語で表示される</dt><dd>0.3.9に更新し、資料を開いて「資料を要約」を押します。自動要約をオンにした授業は、そのフォルダーを選ぶと再生成が進みます。要約の下の「参照箇所（原文）」では、資料が書かれた言語のまま読めます。</dd></div>
           <div><dt>要約欄に「原文からの抜粋」と出た</dt><dd>日本語の要約を生成できなかったときに表示する、原文からの引用です。元の資料を読むか、「再度要約」を押します。</dd></div>
           <div><dt>NPUのグラフが動かない</dt><dd>保存済みの要約を開くと新しい生成は始まりません。「再度要約」を押し、<a href="#npu">実行先と計測状態</a>を確認してください。</dd></div>
         </dl>
