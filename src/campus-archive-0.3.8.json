@@ -1,0 +1,52 @@
+{
+  "name": "SceneFinder-Campus-Offline-0.3.8-x64.zip",
+  "size": 5052979841,
+  "tag": "v0.3.8",
+  "sha256": "7a2c5be29835d95d09545c79a019007a8fd8d9ce5fbade6d3336419b8499ed64",
+  "segments": [
+    {
+      "bytes": "UEsDBBQAAAAAAOeCdl3zaKjuYpJZK2KSWSsmAAAAU2NlbmVGaW5kZXItQ2FtcHVzLVNldHVwLTAuMy44LXg2NC5leGU=",
+      "size": 68
+    },
+    {
+      "file": "SceneFinder-Campus-Setup-0.3.8-x64.exe",
+      "size": 727290466
+    },
+    {
+      "bytes": "UEsDBBQAAAAAAGiCdl1P5a3xAAAAYAAAAGAoAAAAU2NlbmVGaW5kZXItQ2FtcHVzLUdlbW1hLTAuMy44LnBhcnQxLmJpbg==",
+      "size": 70
+    },
+    {
+      "file": "SceneFinder-Campus-Gemma-0.3.8.part1.bin",
+      "size": 1610612736
+    },
+    {
+      "bytes": "UEsDBBQAAAAAAGqCdl28b9AQAAAAYAAAAGAoAAAAU2NlbmVGaW5kZXItQ2FtcHVzLUdlbW1hLTAuMy44LnBhcnQyLmJpbg==",
+      "size": 70
+    },
+    {
+      "file": "SceneFinder-Campus-Gemma-0.3.8.part2.bin",
+      "size": 1610612736
+    },
+    {
+      "bytes": "UEsDBBQAAAAAAGyCdl3WiFsRCcPUQQnD1EEoAAAAU2NlbmVGaW5kZXItQ2FtcHVzLUdlbW1hLTAuMy44LnBhcnQzLmJpbg==",
+      "size": 70
+    },
+    {
+      "file": "SceneFinder-Campus-Gemma-0.3.8.part3.bin",
+      "size": 1104462601
+    },
+    {
+      "bytes": "UEsDBBQAAAAAAOiCdl1UGHqHrgEAAK4BAAAVAAAAU0hBMjU2U1VNUy1DYW1wdXMudHh0",
+      "size": 51
+    },
+    {
+      "file": "SHA256SUMS-Campus.txt",
+      "size": 430
+    },
+    {
+      "bytes": "UEsBAhQAFAAAAAAA54J2XfNoqO5iklkrYpJZKyYAAAAAAAAAAAAAAP+BAAAAAFNjZW5lRmluZGVyLUNhbXB1cy1TZXR1cC0wLjMuOC14NjQuZXhlUEsBAhQAFAAAAAAAaIJ2XU/lrfEAAABgAAAAYCgAAAAAAAAAAAAAALaBppJZK1NjZW5lRmluZGVyLUNhbXB1cy1HZW1tYS0wLjMuOC5wYXJ0MS5iaW5QSwECLQAtAAAAAABqgnZdvG/QEAAAAGAAAABgKAAMAAAAAAAAAAAAtoH/////U2NlbmVGaW5kZXItQ2FtcHVzLUdlbW1hLTAuMy44LnBhcnQyLmJpbgEACADsklmLAAAAAFBLAQItAC0AAAAAAGyCdl3WiFsRCcPUQQnD1EEoAAwAAAAAAAAAAAC2gf////9TY2VuZUZpbmRlci1DYW1wdXMtR2VtbWEtMC4zLjgucGFydDMuYmluAQAIADKTWesAAAAAUEsBAi0ALQAAAAAA6IJ2XVQYeoeuAQAArgEAABUADAAAAAAAAAAAALaB/////1NIQTI1NlNVTVMtQ2FtcHVzLnR4dAEACACBVi4tAQAAAFBLBgYsAAAAAAAAAC0ALQAAAAAAAAAAAAUAAAAAAAAABQAAAAAAAAC9AQAAAAAAAGJYLi0BAAAAUEsGBwAAAAAfWi4tAQAAAAEAAABQSwUGAAAAAAUABQC9AQAA/////wAA",
+      "size": 543
+    }
+  ]
+}
